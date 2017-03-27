@@ -413,7 +413,7 @@ function updateFullName($fname, $lname, $username) {
     try {
         $sqlite = new SQLite3($GLOBALS ["databaseFile"]);
         $sqlite->enableExceptions(true);
-        $query = $sqlite->prepare("UPDATE Users SET fname=:fname, lname=:lname WHERE username=:username");
+        $query = $sqlite->prepare("UPDATE Users SET FIRSTNAME=:fname, LASTNAME=:lname WHERE USERNAME=:username");
         $query->bindParam(':username',$username);
         $query->bindParam(':fname',$fname);
         $query->bindParam(':lname',$lname);
@@ -430,6 +430,65 @@ function updateFullName($fname, $lname, $username) {
 	
 	return $success;
 }
+
+function updatePassword($username, $password) {
+    $success = FALSE;
+    try {
+        $sqlite = new SQLite3($GLOBALS ["databaseFile"]);
+        $sqlite->enableExeception(true);
+        $query = $sqlite->prepare("UPDATE Users SET PASSWORD=:password WHERE USERNAME=:username");
+        $query->bindParam(':username',$username);
+        $query->bindParam(':password',encrypt($password));
+        $query->execute();
+        $sqlite->close();
+        $success = TRUE;
+    }catch (Exception $exception) {
+        if ($GLOBALS ["sqliteDebug"])
+        {
+            return $exception->getMessage();
+        }
+    
+    return $success;
+}
+
+function UpdatePersonalInfo($username, $fname, $lname, $email, $address, $phone) {
+    $success = FALSE;
+    try {
+        $sqlite = new SQLite3($GLOBALS ["databaseFile"]);
+        $sqlite->enableException(true);
+        $query = $sqlite->prepare("UPDATE Users SET FIRSTNAME=:fname LASTNAME=:lname EMAIL=:email WHERE USERNAME=:username");
+        $query->bindParam(':fname', $fname);
+        $query->bindParam(':lname', $lname);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':username', $username);
+        $query->execute();
+        $sqlite->close();
+        $success = TRUE;
+    }catch (Exception $exception) {
+        if($GLOBAL ["sqliteDebug"]) {
+            return $exception->getMessage();
+        }
+    }
+    return $success;
+}
+
+function UpdateProfInfo($id, $salary, $position) {
+    $success = FALSE;
+    try {
+        $sqlite = new SQLITE($GLOBALS ["databaseFile"]);
+        $sqlite->enableException(true);
+        $query = $sqlite->prepare("UPDATE StudentEmployee SET SALARY=:salary WHERE ID=:id");
+        $query->bindParam(':id', $id);
+        $query->bindParam(':salary', $salary);
+        $query->execute();
+        $sqlite->close();
+        $success = TRUE;
+    } catch(Exception $exception) {
+        return $exception->getMessage();
+    }
+    return $success;
+}
+
 /////////////////////////
 //Facilities Management//
 /////////////////////////
