@@ -391,7 +391,7 @@ function postBook()
 function human_resources_switch()
 {
 	// Define the possible Human Resources function URLs which the page can be accessed from
-	$possible_function_url = array();
+	$possible_function_url = array("test","updatePerson","upateProf","updateName", "updatePassword");
 
 	if (isset($_GET["function"]) && in_array($_GET["function"], $possible_function_url))
 	{
@@ -399,6 +399,14 @@ function human_resources_switch()
 		{
             case "test":
                 return testThis();
+            case "updatePerson":
+                return updatePersonalInfo();
+            case "updateProf":
+                return updateProfInfo();
+            case "updatePassword":
+                return updatePassword();
+            case "updateName":
+                return updateFullName();
 		}
 	}
 }
@@ -408,8 +416,14 @@ function testThis() {
 }
 
 //Define Functions Here
-function updateFullName($fname, $lname, $username) {
-    $success = FALSE;
+function updateFullName() {
+    $username = $_GET["username"];
+    $fname = $_GET["fname"];
+    $lname = $_GET["lname"];
+    if(!(isset($username) && isset($fname) && isset($lname))) {
+        return false;
+    }
+    $success = false;
     try {
         $sqlite = new SQLite3($GLOBALS ["databaseFile"]);
         $sqlite->enableExceptions(true);
@@ -419,7 +433,7 @@ function updateFullName($fname, $lname, $username) {
         $query->bindParam(':lname',$lname);
         $query->execute();
         $sqlite->close();
-        $success = TRUE;
+        $success = true;
     }catch (Exception $exception) {
         if ($GLOBALS ["sqliteDebug"]) 
 		{
@@ -431,8 +445,13 @@ function updateFullName($fname, $lname, $username) {
 	return $success;
 }
 
-function updatePassword($username, $password) {
-    $success = FALSE;
+function updatePassword() {
+    $username = $_GET["username"];
+    $password = $_GET["password"];
+    if(!(isset($username) && isset($password))) {
+        return false;
+    }
+    $success = false;
     try {
         $sqlite = new SQLite3($GLOBALS ["databaseFile"]);
         $sqlite->enableExeception(true);
@@ -441,7 +460,7 @@ function updatePassword($username, $password) {
         $query->bindParam(':password',encrypt($password));
         $query->execute();
         $sqlite->close();
-        $success = TRUE;
+        $success = true;
     }catch (Exception $exception) {
         if ($GLOBALS ["sqliteDebug"])
         {
@@ -451,8 +470,17 @@ function updatePassword($username, $password) {
     return $success;
 }
 
-function UpdatePersonalInfo($username, $fname, $lname, $email, $address, $phone) {
-    $success = FALSE;
+function updatePersonalInfo() {
+    $username = $_GET["username"];
+    $fname = $_GET["fname"];
+    $lname = $_GET["lname"];
+    $email = $_GET["email"];
+    $address = $_GET["address"];
+    $phone = $_GET["phone"];
+    if(!(isset($username) && isset($fname) && isset($lname) && isset($email) && isset($address) && isset($phone))) {
+        return false;
+    }
+    $success = false;
     try {
         $sqlite = new SQLite3($GLOBALS ["databaseFile"]);
         $sqlite->enableException(true);
@@ -463,7 +491,7 @@ function UpdatePersonalInfo($username, $fname, $lname, $email, $address, $phone)
         $query->bindParam(':username', $username);
         $query->execute();
         $sqlite->close();
-        $success = TRUE;
+        $success = true;
     }catch (Exception $exception) {
         if($GLOBAL ["sqliteDebug"]) {
             return $exception->getMessage();
@@ -472,8 +500,14 @@ function UpdatePersonalInfo($username, $fname, $lname, $email, $address, $phone)
     return $success;
 }
 
-function UpdateProfInfo($id, $salary, $position) {
-    $success = FALSE;
+function updateProfInfo() {
+    $id = $_GET["id"];
+    $salary = $_GET["salary"];
+    $position = $_GET["position"];
+    if(!(isset($id) && isset($salary) && isset($position))) {
+        return false;
+    }
+    $success = false;
     try {
         $sqlite = new SQLITE($GLOBALS ["databaseFile"]);
         $sqlite->enableException(true);
@@ -482,7 +516,7 @@ function UpdateProfInfo($id, $salary, $position) {
         $query->bindParam(':salary', $salary);
         $query->execute();
         $sqlite->close();
-        $success = TRUE;
+        $success = true;
     } catch(Exception $exception) {
         return $exception->getMessage();
     }
