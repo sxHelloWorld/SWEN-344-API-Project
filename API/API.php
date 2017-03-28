@@ -466,7 +466,7 @@ function updatePassword() {
         {
             return $exception->getMessage();
         }
-    
+    }
     return $success;
 }
 
