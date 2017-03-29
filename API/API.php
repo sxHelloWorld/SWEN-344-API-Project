@@ -454,6 +454,16 @@ function human_resources_switch($getFunctions)
                 {
                 	return "Missing a parameter";
                 }
+
+            case "getEmployees":
+            	if ((isset($_POST["id"]) && $_POST["id"] != null)
+				){
+                	return getEmployees($_POST["id"]);
+                }
+                else
+                {
+                	return "Missing a parameter";
+                }
 		}
 	}
 	else
@@ -544,6 +554,21 @@ function updateProfInfo($id, $salary, $title) {
         $query->bindParam(':title', $title)
         $query->execute();
         $sqlite->close();
+        $success = true;
+    } catch(Exception $exception) {
+        if ($GLOBALS ["sqliteDebug"])
+        {
+            return $exception->getMessage();
+        }
+    }
+    return $success;
+}
+
+function getEmployees($id) {
+    $success = false;
+    $manager = $_POST["id"];
+    $managedEmployees = array();
+    try {
         $success = true;
     } catch(Exception $exception) {
         if ($GLOBALS ["sqliteDebug"])
