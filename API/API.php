@@ -388,26 +388,87 @@ function postBook()
 ///////////////////
 
 // Switchboard to Human Resources Functions
-function human_resources_switch()
+function human_resources_switch($getFunctions)
 {
 	// Define the possible Human Resources function URLs which the page can be accessed from
-	$possible_function_url = array("test","updatePerson","upateProf","updateName", "updatePassword");
+	$possible_function_url = array("test","updatePerson","updateProf","updateName", "updatePassword");
+
+	if ($getFunctions)
+	{
+		return $possible_function_url;
+	}
 
 	if (isset($_GET["function"]) && in_array($_GET["function"], $possible_function_url))
 	{
 		switch ($_GET["function"])
 		{
+			
             case "test":
                 return testThis();
-            case "updatePerson":
-                return updatePersonalInfo();
+
             case "updateProf":
-                return updateProfInfo();
+    			if ((isset($_POST["id"]) && $_POST["id"] != null)
+					&& (isset($_POST["salary"]) && $_POST["salary"] != null)
+					&& (isset($_POST["title"]) && $_POST["title"] != null)
+				){
+                	return updateProfInfo($_POST["id"], $_POST["salary"], $_POST["title"]);
+                }
+                else
+                {
+                	return "Missing a parameter";
+                }
+                
+            case "updatePerson":
+            	if ((isset($_POST["username"]) && $_POST["username"] != null)
+					&& (isset($_POST["fname"]) && $_POST["fname"] != null)
+					&& (isset($_POST["lname"]) && $_POST["lname"] != null)
+					&& (isset($_POST["email"]) && $_POST["email"] != null)
+					&& (isset($_POST["address"]) && $_POST["address"] != null)
+				){
+            		return updatePersonalInfo($_POST["username"], $_POST["fname"], $_POST["lname"], $_POST["email"], $_POST["address"]);
+				}
+				else
+                {
+                	return "Missing a parameter";
+                }
+               
             case "updatePassword":
-                return updatePassword();
+            	if ((isset($_POST["username"]) && $_POST["username"] != null)
+					&& (isset($_POST["password"]) && $_POST["password"] != null)
+				){
+            		return updatePassword($_POST["username"], $_POST["password"]);
+				}
+				else
+                {
+                	return "Missing a parameter";
+                }
+                
             case "updateName":
-                return updateFullName();
+            	if ((isset($_POST["username"]) && $_POST["username"] != null)
+					&& (isset($_POST["fname"]) && $_POST["fname"] != null)
+					&& (isset($_POST["lname"]) && $_POST["lname"] != null)
+				){
+                	return updateFullName($_POST["username"], $_POST["fname"], $_POST["lname"]);
+                }
+                else
+                {
+                	return "Missing a parameter";
+                }
+
+            case "getEmployees":
+            	if ((isset($_POST["id"]) && $_POST["id"] != null)
+				){
+                	return getEmployees($_POST["id"]);
+                }
+                else
+                {
+                	return "Missing a parameter";
+                }
 		}
+	}
+	else
+	{
+		return "Function does not exist.";
 	}
 }
 
@@ -418,6 +479,7 @@ function testThis() {
     return "MOO";
 }
 
+<<<<<<< HEAD
 // Update First and Last name with username
 // Input Parameters:
 //  First name, Last name
@@ -431,6 +493,10 @@ function updateFullName() {
     if(!(isset($username) && isset($fname) && isset($lname))) {
         return false;
     }
+=======
+//Define Functions Here
+function updateFullName($username, $fname, $lname) {
+>>>>>>> b22ef2ed3747333137c2964104d3a2c56583f11b
     $success = false;
     try {
         // Open a connection to database
@@ -457,6 +523,7 @@ function updateFullName() {
 	return $success;
 }
 
+<<<<<<< HEAD
 // Update password with username
 // Input parameter:
 //  Password
@@ -469,6 +536,9 @@ function updatePassword() {
     if(!(isset($username) && isset($password))) {
         return false;
     }
+=======
+function updatePassword($username, $password) {
+>>>>>>> b22ef2ed3747333137c2964104d3a2c56583f11b
     $success = false;
     try {
         // Open a connection to database
@@ -492,6 +562,7 @@ function updatePassword() {
     return $success;
 }
 
+<<<<<<< HEAD
 // Update personal information with username
 // Input parameters:
 //  First name, Last name, Email, Address Phone
@@ -508,30 +579,40 @@ function updatePersonalInfo() {
     if(!(isset($username) && isset($fname) && isset($lname) && isset($email) && isset($address) && isset($phone))) {
         return false;
     }
+=======
+function updatePersonalInfo($username, $fname, $lname, $email, $address) {
+>>>>>>> b22ef2ed3747333137c2964104d3a2c56583f11b
     $success = false;
     try {
         // Open a connection to database
         $sqlite = new SQLite3($GLOBALS ["databaseFile"]);
         $sqlite->enableException(true);
+<<<<<<< HEAD
         // Prevent SQL Injection
         $query = $sqlite->prepare("UPDATE Users SET FIRSTNAME=:fname LASTNAME=:lname EMAIL=:email WHERE USERNAME=:username");
         // Set variables to query
+=======
+        $query = $sqlite->prepare("UPDATE Users SET FIRSTNAME=:fname LASTNAME=:lname EMAIL=:email ADDRESS=:address WHERE USERNAME=:username");
+        $query->bindParam(':username', $username);
+>>>>>>> b22ef2ed3747333137c2964104d3a2c56583f11b
         $query->bindParam(':fname', $fname);
         $query->bindParam(':lname', $lname);
         $query->bindParam(':email', $email);
-        $query->bindParam(':username', $username);
+        $query->bindParam(':address', $address);
         $query->execute();
         // Clear up the connection
         $sqlite->close();
         $success = true;
     }catch (Exception $exception) {
-        if($GLOBAL ["sqliteDebug"]) {
+        if($GLOBAL ["sqliteDebug"]) 
+        {
             return $exception->getMessage();
         }
     }
     return $success;
 }
 
+<<<<<<< HEAD
 // Update professional information with username
 // Input parameters:
 //  Salary, Position
@@ -545,22 +626,48 @@ function updateProfInfo() {
     if(!(isset($id) && isset($salary) && isset($position))) {
         return false;
     }
+=======
+function updateProfInfo($id, $salary, $title) {
+>>>>>>> b22ef2ed3747333137c2964104d3a2c56583f11b
     $success = false;
     try {
         // Open a connection to database
         $sqlite = new SQLITE($GLOBALS ["databaseFile"]);
         $sqlite->enableException(true);
+<<<<<<< HEAD
         // Prevent SQL Injection
         $query = $sqlite->prepare("UPDATE StudentEmployee SET SALARY=:salary WHERE ID=:id");
         // Set variables to query
+=======
+        $query = $sqlite->prepare("UPDATE StudentEmployee SET SALARY=:salary TITLE=:title WHERE ID=:id");
+>>>>>>> b22ef2ed3747333137c2964104d3a2c56583f11b
         $query->bindParam(':id', $id);
         $query->bindParam(':salary', $salary);
+        $query->bindParam(':title', $title)
         $query->execute();
         // Clear up the connection
         $sqlite->close();
         $success = true;
     } catch(Exception $exception) {
-        return $exception->getMessage();
+        if ($GLOBALS ["sqliteDebug"])
+        {
+            return $exception->getMessage();
+        }
+    }
+    return $success;
+}
+
+function getEmployees($id) {
+    $success = false;
+    $manager = $_POST["id"];
+    $managedEmployees = array();
+    try {
+        $success = true;
+    } catch(Exception $exception) {
+        if ($GLOBALS ["sqliteDebug"])
+        {
+            return $exception->getMessage();
+        }
     }
     return $success;
 }
