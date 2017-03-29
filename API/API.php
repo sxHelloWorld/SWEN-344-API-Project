@@ -736,7 +736,6 @@ function updateProfInfo($id, $salary, $title)
     return $success;
 }
 
-
 function getPersonalInfo($username)
 {
 		$success = false
@@ -867,6 +866,38 @@ function createProf($username, $password, $fname, $lname, $email, $role, $manage
 	}
 
 	return $success;
+
+function getEmployees($id) 
+{ 
+    try 
+    {
+    	$manager = $sqlite->("SELECT * FROM Users WHERE ID=:id");
+    	$sqlite = new SQLite3($GLOBALS ["databaseFile"]);
+		$sqlite->enableExceptions(true);
+		
+		//prepare query to protect from sql injection
+		$managedEmployees = array();
+		$query = $sqlite->prepare("SELECT * FROM UniversityEmployee WHERE MANAGER_ID=:id");
+		$employees = $query->execute();
+		array_push($managedEmployees, $employees);
+						
+        if ($record = $managedEmployees->fetchArray(SQLITE3_ASSOC)) 
+		{
+			$result->finalize();
+			// clean up any objects
+			$sqlite->close();
+			return $record;
+		}
+    } 
+    catch(Exception $exception) 
+    {
+        if ($GLOBALS ["sqliteDebug"])
+        {
+            return $exception->getMessage();
+        }
+        logError($exception);
+    }
+
 }
 
 /////////////////////////
