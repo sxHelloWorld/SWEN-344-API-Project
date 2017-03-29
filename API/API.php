@@ -713,6 +713,74 @@ function updateProfInfo($id, $salary, $title)
 }
 
 
+function getPersonalInfo($username)
+{
+		$success = false
+		
+		try
+		{
+			$sqlite = new SQLite3($GLOBALS["databaseFile"]);
+			$sqlite->enableException(true);
+			
+			$query = $sqlite->prepare("SELECT * FROM User WHERE USERNAME=:username");
+			$query->bindParam(':username', $username);
+			$result = $query->execute();
+			
+			if($record = $result->fetchArray(SQLITE3_ASSOC))
+			{
+			
+				$result->finalize();
+				$sqlite->close();
+			
+				return $record;
+			}
+			
+		}
+		catch(Exception $exception)
+		{
+			if($GLOBALS ["sqliteDebug"])
+			 {
+			 	return $exception->getMessage();
+			 }
+			 
+			 logError($exception);
+		}
+
+
+function getProfessionalInfo($id)
+{
+		$sucess = false
+		
+		try
+		{
+			$sqlite = new SQLite3($GLOBALS["databaseFile"]);
+			$sqlite-> enableException(true);
+			
+			$query = $sqlite->prepare("SELECT * FROM UniversityEmployee WHERE ID=:id");
+			$query->bindParam(':id', $id);
+			$result = $query->execute();
+			
+			if($record = $result->fetchArray(SQLITE3_ASSOC))
+			{
+			
+				$result->finalize();
+				$sqlite->close();
+			
+				return $record;
+			}
+	
+		}
+		catch(Exception $exception)
+		{
+			if($GLOBALS ["sqliteDebug"])
+			 {
+			 	return $exception->getMessage();
+			 }
+			 
+			 logError($exception);
+		}
+}
+
 
 
 /////////////////////////
