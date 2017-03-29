@@ -661,7 +661,7 @@ function updatePersonalInfo($username, $fname, $lname, $email, $address) {
 
 // Update professional information with username
 // Input parameters:
-//  Salary, Position
+//  Salary, Title
 // Main Input Parameter to update specific user:
 //  ID
 function updateProfInfo($id, $salary, $title) {
@@ -685,6 +685,7 @@ function updateProfInfo($id, $salary, $title) {
         if ($GLOBALS ["sqliteDebug"]) {
             return $exception->getMessage();
         }
+		logError($exception);
     }
 	
     return $success;
