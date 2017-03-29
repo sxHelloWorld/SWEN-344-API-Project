@@ -130,7 +130,31 @@ function general_switch($getFunctions)
 							$_POST["role"]
 							);
 					}
-					else 
+				elseif (isset($_POST["username"]) &&
+					isset($_POST["password"]) &&
+					isset($_POST["fname"]) &&
+					isset($_POST["lname"]) &&
+					isset($_POST["email"]) &&
+					isset($_POST["role"]) &&
+					isset($_POST["managerId"]) &&
+					isset($_POST["title"]) &&
+					isset($_POST["address"]) &&
+					isset($_POST["salary"])
+					)
+					{
+						return createProf($_POST["username"],
+							$_POST["password"],
+							$_POST["fname"],
+							$_POST["lname"],
+							$_POST["email"],
+							$_POST["role"],
+							$_POST["managerId"],
+							$_POST["title"],
+							$_POST["address"],
+							$_POST["salary"]
+							);
+					}
+				else
 					{
 						logError("createUser ~ Required parameters were not submit correctly.");
 						return ("One or more parameters were not provided");
@@ -781,7 +805,69 @@ function getProfessionalInfo($id)
 		}
 }
 
+function createProf($username, $password, $fname, $lname, $email, $role, $managerId, $title, $address,
+	$salary) {
+	$success = false;
 
+	try
+	{
+		$sqlite = new SQLite3($GLOBALS ["databaseFile"]);
+		$sqlite->enableExceptions(true);
+
+		//first check if the username already exists
+		$query = $sqlite->prepare("SELECT * FROM User WHERE USERNAME=:username");
+		$query->bindParam(':username', $username);
+		$result = $query->execute();
+
+		if ($record = $result->fetchArray())
+		{
+			return "Username Already Exists";
+		}
+
+		//for varaible reuse
+		$result->finalize();
+
+		$query1 = $sqlite->prepare("INSERT INTO User (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL,
+			ROLE) VALUES (:username, :password, :fname, :lname, :email, :role)");
+
+		$query1->bindParam(':username', $username);
+		$query1->bindParam(':password', encrypt($password));
+		$query1->bindParam(':fname', $fname);
+		$query1->bindParam(':lname', $lname);
+		$query1->bindParam(':email', $email);
+		$query1->bindParam(':role', $role);
+
+		$query1->execute();
+
+		$userId = sqlite_last_insert_rowid();
+		$query2 = $sqlite->prepare("INSERT INTO UniversityEmployee (USER_ID, MANAGER_ID, TITLE,
+			ADDRESS, SALARY) VALUES (:userId, :managerId, :title, :address, :salary)");
+
+		$query2->bindParam(':userId', $userId);
+		$query2->bindParam(':managerId', $managerId);
+		$query2->bindParam(':title', $title);
+		$query2->bindParam(':address', $address);
+		$query2->bindParam(':salary', $salary);
+
+		$query2->execute();
+
+		// clean up any objects
+		$sqlite->close();
+
+		//if it gets here without throwing an error, assume success = true;
+		$success = true;
+	}
+	catch (Exception $exception)
+	{
+		if ($GLOBALS ["sqliteDebug"])
+		{
+			return $exception->getMessage();
+		}
+		logError($exception);
+	}
+
+	return $success;
+}
 
 /////////////////////////
 //Facilities Management//
