@@ -519,7 +519,6 @@ function human_resources_switch($getFunctions)
 	{
 		switch ($_GET["function"])
 		{
-			
             case "test":
                 return testThis();
 
@@ -571,6 +570,47 @@ function human_resources_switch($getFunctions)
                 {
                 	return "Missing a parameter";
                 }
+			case "createProf":
+				if ((isset($_POST["username"]) && $_POST["username"] != null)
+					&& (isset($_POST["password"]) && $_POST["password"] != null)
+					&& (isset($_POST["fname"]) && $_POST["fname"] != null)
+					&& (isset($_POST["lname"]) && $_POST["lname"] != null)
+					&& (isset($_POST["email"]) && $_POST["email"] != null)
+					&& (isset($_POST["role"]) && $_POST["role"] != null)
+					&& (isset($_POST["managerID"]) && $_POST["managerID"] != null)
+					&& (isset($_POST["title"]) && $_POST["title"] != null)
+					&& (isset($_POST["address"]) && $_POST["address"] != null)
+					&& (isset($_POST["salary"]) && $_POST["salary"] != null)
+					&& (isset($_POST["phone"]) && $_POST["phone"] != null)
+				){
+					return createProf($_POST["username"],
+						$_POST["password"],
+						$_POST["fname"],
+						$_POST["lname"],
+						$_POST["email"],
+						$_POST["role"],
+						$_POST["managerID"],
+						$_POST["title"],
+						$_POST["address"],
+						$_POST["salary"],
+						$_POST["phone"]
+						);
+						
+				}
+			case "getPersonalInfo":
+				if ((isset($_POST["username"] && $_POST["username"] != null))
+				){
+					return getPersonalInfo($_POST["username"]);
+				}
+				else
+				{
+					return "Missing a parameter";
+				}
+			case "getProfInfo":
+				if ((isset($_POST["id"]) && $_POST["id"] != null)
+					){
+						return getProfessionalInfo($_POST["id"]);
+					}
 		}
 	}
 	else
@@ -736,85 +776,104 @@ function updateProfInfo($id, $salary, $title)
     return $success;
 }
 
+// Get personal information with username
+// Input Parameters:
+//  Username
 function getPersonalInfo($username)
 {
-		$success = false
-		
-		try
-		{
-			$sqlite = new SQLite3($GLOBALS["databaseFile"]);
-			$sqlite->enableException(true);
-			
-			$query = $sqlite->prepare("SELECT * FROM User WHERE USERNAME=:username");
-			$query->bindParam(':username', $username);
-			$result = $query->execute();
-			
-			if($record = $result->fetchArray(SQLITE3_ASSOC))
-			{
-			
-				$result->finalize();
-				$sqlite->close();
-			
-				return $record;
-			}
-			
-		}
-		catch(Exception $exception)
-		{
-			if($GLOBALS ["sqliteDebug"])
-			 {
-			 	return $exception->getMessage();
-			 }
-			 
-			 logError($exception);
-		}
-
-
-function getProfessionalInfo($id)
-{
-		$sucess = false
-		
-		try
-		{
-			$sqlite = new SQLite3($GLOBALS["databaseFile"]);
-			$sqlite-> enableException(true);
-			
-			$query = $sqlite->prepare("SELECT * FROM UniversityEmployee WHERE ID=:id");
-			$query->bindParam(':id', $id);
-			$result = $query->execute();
-			
-			if($record = $result->fetchArray(SQLITE3_ASSOC))
-			{
-			
-				$result->finalize();
-				$sqlite->close();
-			
-				return $record;
-			}
-	
-		}
-		catch(Exception $exception)
-		{
-			if($GLOBALS ["sqliteDebug"])
-			 {
-			 	return $exception->getMessage();
-			 }
-			 
-			 logError($exception);
-		}
-}
-
-function createProf($username, $password, $fname, $lname, $email, $role, $managerId, $title, $address,
-	$salary) {
 	$success = false;
 
 	try
 	{
+		// Open a connection to database
+		$sqlite = new SQLite3($GLOBALS ["databaseFile"]);
+		$sqlite->enableException(true);
+		// Prevent SQL Injection
+		$query = $sqlite->prepare("SELECT * FROM User WHERE USERNAME=:username");
+		// Set variables to query
+		$query->bindParam(':username', $username);
+		$result = $query->execute();
+		
+		if($record = $result->fetchArray(SQLITE3_ASSOC))
+		{
+			$result->finalize();
+			$sqlite->close();
+		
+			return $record;
+		}
+		
+	}
+	catch(Exception $exception)
+	{
+		if($GLOBALS ["sqliteDebug"])
+		 {
+			return $exception->getMessage();
+		 }
+		 
+		 logError($exception);
+	}
+	
+	return $success;
+}
+
+// Get professional information (such as salary, title, etc) with ID
+// Input Parameters:
+//  ID
+function getProfessionalInfo($id)
+{
+	$success = false;
+
+	try
+	{
+		// Open a connection to database
+		$sqlite = new SQLite3($GLOBALS ["databaseFile"]);
+		$sqlite-> enableException(true);
+		// Prevent SQL Injection
+		$query = $sqlite->prepare("SELECT * FROM UniversityEmployee WHERE ID=:id");
+		// Set variables to query
+		$query->bindParam(':id', $id);
+		$result = $query->execute();
+		
+		if($record = $result->fetchArray(SQLITE3_ASSOC))
+		{
+			$result->finalize();
+			$sqlite->close();
+		
+			return $record;
+		}
+
+	}
+	catch(Exception $exception)
+	{
+		if($GLOBALS ["sqliteDebug"])
+		{
+			return $exception->getMessage();
+		}
+
+		logError($exception);
+	}
+
+	return $success;
+}
+
+// Creates a new professional user
+// Input Parameters:
+//  Username, Password, First name, Last name, Email, Role, ManagerID, Title, Address, Salary
+function createProf($username, $password, $fname, $lname, $email, $role, $managerId, $title, $address,
+	$salary, $phone)
+{
+	$success = false;
+
+	try
+	{
+		// Open a connection to database
 		$sqlite = new SQLite3($GLOBALS ["databaseFile"]);
 		$sqlite->enableExceptions(true);
 
-		//first check if the username already exists
+		// Prevent SQL Injection
+		// first check if the username already exists
 		$query = $sqlite->prepare("SELECT * FROM User WHERE USERNAME=:username");
+		// Set variables to query
 		$query->bindParam(':username', $username);
 		$result = $query->execute();
 
@@ -823,12 +882,13 @@ function createProf($username, $password, $fname, $lname, $email, $role, $manage
 			return "Username Already Exists";
 		}
 
-		//for varaible reuse
+		// for varaible reuse
 		$result->finalize();
-
+		
+		// Prevent SQL Injection
 		$query1 = $sqlite->prepare("INSERT INTO User (USERNAME, PASSWORD, FIRSTNAME, LASTNAME, EMAIL,
 			ROLE) VALUES (:username, :password, :fname, :lname, :email, :role)");
-
+		// Set variables to query
 		$query1->bindParam(':username', $username);
 		$query1->bindParam(':password', encrypt($password));
 		$query1->bindParam(':fname', $fname);
@@ -839,21 +899,23 @@ function createProf($username, $password, $fname, $lname, $email, $role, $manage
 		$query1->execute();
 
 		$userId = sqlite_last_insert_rowid();
+		// Prevent SQL Injection
 		$query2 = $sqlite->prepare("INSERT INTO UniversityEmployee (USER_ID, MANAGER_ID, TITLE,
-			ADDRESS, SALARY) VALUES (:userId, :managerId, :title, :address, :salary)");
-
+			ADDRESS, SALARY, PHONE) VALUES (:userId, :managerId, :title, :address, :salary, :phone)");
+		// Set variables to query
 		$query2->bindParam(':userId', $userId);
 		$query2->bindParam(':managerId', $managerId);
 		$query2->bindParam(':title', $title);
 		$query2->bindParam(':address', $address);
 		$query2->bindParam(':salary', $salary);
+		$query2->bindParam(':phone', $phone);
 
 		$query2->execute();
 
 		// clean up any objects
 		$sqlite->close();
 
-		//if it gets here without throwing an error, assume success = true;
+		// if it gets here without throwing an error, assume success = true;
 		$success = true;
 	}
 	catch (Exception $exception)
@@ -866,16 +928,23 @@ function createProf($username, $password, $fname, $lname, $email, $role, $manage
 	}
 
 	return $success;
+}
 
+// Get a list of employees where they are under managerID
+// Input Parameters:
+//  ID
 function getEmployees($id) 
-{ 
+{
+	// Function is not completed
+	return "TODO";
     try 
     {
+		// Open a connection to database
     	$manager = $sqlite->("SELECT * FROM Users WHERE ID=:id");
     	$sqlite = new SQLite3($GLOBALS ["databaseFile"]);
 		$sqlite->enableExceptions(true);
 		
-		//prepare query to protect from sql injection
+		// prepare query to protect from sql injection
 		$managedEmployees = array();
 		$query = $sqlite->prepare("SELECT * FROM UniversityEmployee WHERE MANAGER_ID=:id");
 		$employees = $query->execute();
@@ -897,7 +966,7 @@ function getEmployees($id)
         }
         logError($exception);
     }
-
+	return "ManagerID is not found";
 }
 
 /////////////////////////
