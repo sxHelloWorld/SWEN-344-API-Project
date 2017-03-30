@@ -598,7 +598,7 @@ function human_resources_switch($getFunctions)
 						
 				}
 			case "getPersonalInfo":
-				if ((isset($_POST["username"] && $_POST["username"] != null))
+				if ((isset($_POST["username"]) && $_POST["username"] != null)
 				){
 					return getPersonalInfo($_POST["username"]);
 				}
@@ -940,7 +940,7 @@ function getEmployees($id)
     try 
     {
 		// Open a connection to database
-    	$manager = $sqlite->("SELECT * FROM Users WHERE ID=:id");
+    	// $manager = $sqlite->("SELECT * FROM Users WHERE ID=:id");
     	$sqlite = new SQLite3($GLOBALS ["databaseFile"]);
 		$sqlite->enableExceptions(true);
 		
