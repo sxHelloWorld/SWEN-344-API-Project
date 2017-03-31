@@ -23,7 +23,9 @@ class assertAPI extends TestCase
 {
 	public function setUp() {}
 	public function tearDown() {}
-	
+
+    $id = 0;
+
 	public function testcreateProf()
 	{	
 		$arrayData = array("username"=> "vm344b", "password" => "password", "fname" => "Root", "lname"=> "Last", "email"=> "vm344b.se.rit.edu", "role"=> "Admin", "managerID"=> "1", "title"=> "Robot", "address"=> "127.0.0.1", "salary"=> 100000, "phone"=> "1231231234");
@@ -32,11 +34,12 @@ class assertAPI extends TestCase
 	}
 
 	public function testLogin()
-	{
+    {
 		$arrayData = array("username" => "vm344b", "password" => "password");
 		$data = getData("general", "login", $arrayData);
-		$result = json_decode($data);
-		$this->assertTrue($result->{"ID"} === 1);
+        $result = json_decode($data);
+        $id = $result->{"ID"};
+		$this->assertTrue($result->{"USERNAME"} === "vm344b");
 	}
 	
 	// Test: Finds an existing User with the provided Username and updates its first and last name fields.
@@ -61,7 +64,7 @@ class assertAPI extends TestCase
 		$arrayData = array("username" => "vm344b");
 		$data = getData("human_resources", "getPersonalInfo", $arrayData);
 		$result = json_decode($data);
-		$getAssert = ($result->{"ID"} === 1) && ($result->{"FIRSTNAME"} === "NewName") && ($result->{"EMAIL"} === "vm344b.se.rit.edu");
+		$getAssert = ($result->{"ID"} === $id) && ($result->{"FIRSTNAME"} === "NewName") && ($result->{"EMAIL"} === "vm344b.se.rit.edu");
 		$this->assertTrue($getAssert);
 	}
 
@@ -77,7 +80,7 @@ class assertAPI extends TestCase
 	//  the professional information of the passed in employee.
 	public function testgetProfInfo()
 	{
-		$arrayData = array("id" => 1);
+		$arrayData = array("id" => $id);
 		$data = getData("human_resources", "getProfInfo", $arrayData);
 		$result = json_decode($data);
 		$this->assertTrue($result->{"ADDRESS"} === "127.0.0.1");
@@ -127,7 +130,7 @@ class assertAPI extends TestCase
 	// Update professional information such as salary and title
 	public function testupdateProf()
 	{
-		$arrayData = array("id" => 1, "salary" => 10000, "title" => "superadmin");
+		$arrayData = array("id" => $id, "salary" => 10000, "title" => "superadmin");
 		$data = getData("human_resources", "updateProf", $arrayData);
 		$this->assertTrue($data === 'true');
 	}
@@ -143,7 +146,7 @@ class assertAPI extends TestCase
     // Terminate an employee by setting attribute to 1 for terminate
     public function testTerminate()
     {
-    	$arrayData = array("id" => 1);
+    	$arrayData = array("id" => $id);
     	$data = getData("human_resources", "terminate", $arrayData);
     	$this->assertTrue($data === 'true');
     }
@@ -159,7 +162,7 @@ class assertAPI extends TestCase
     // Remove employee from the database
     public function testRemoveEmployee()
     {
-    	$arrayData = array("id" => 1);
+    	$arrayData = array("id" => $id);
     	$data = getData("human_resources", "removeEmployee", $arrayData);
     	$this->assertTrue($data === 'true');
     }
