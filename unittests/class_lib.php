@@ -127,7 +127,6 @@ Employee Collection class represents collection of Employee objects for persiste
                 if (strcmp($employee->get_username(), $username) == 0) {
                     $key = array_search($employee, $this->arr); 
                     $employee = $this->arr[$key];
-                    print_r($employee);
                     unset($this->arr[$key]);
                     
                 }

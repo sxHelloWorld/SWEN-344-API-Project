@@ -27,15 +27,18 @@ $_SESSION['employee'] = $employee;
  <body>
      
      <h1>Unit Test Case #2</h1>
+     <?php
      /*
      Instruction for test case
      */
+     ?>
      <p>Submit the form with the following values ("John" for first name and "Doe" for last name) to verify that the update process for personal information was successful.</p>
      
-     
+     <?php
      /*
      Form to update personal information
      */
+     ?>
      <form action="testcase2.php" method='post'>
          <div class="container">
  

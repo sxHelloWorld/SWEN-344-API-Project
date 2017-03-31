@@ -1,5 +1,4 @@
-<?php include("class_lib.php"); 
-?>
+<?php include("class_lib.php"); ?>
 
 <?php session_start(); ?>
 
