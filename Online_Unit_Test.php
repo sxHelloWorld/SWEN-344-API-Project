@@ -5,7 +5,7 @@ use PHPUNIT\Framework\TestCase;
 // POST method 
 function getData($team, $function, $data)
 {
-	$url = "http://vm344b.se.rit.edu/API.php";
+	$url = "http://vm344f.se.rit.edu/API/API.php";
 	$url .= "?team=$team&function=$function";
 	$options = array(
 		'http' => array(
