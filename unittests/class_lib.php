@@ -74,7 +74,7 @@
         
         function remove_employee($username) {
             echo "In function";
-            foreach ($employees as $employee) {
+            foreach ($this->arr as $employee) {
                 if (strcmp($employee->get_username(), $username) == 0) {
                     if ($key = array_search($employee, $this->arr) != false) {
                         echo "in search";
