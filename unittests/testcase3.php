@@ -26,7 +26,7 @@ echo "</p>";
 
  echo "<h1><a href=\"terminate.php\">Proceed to Unit Test #4</a></h1>";
 
- $employee->set_prof_info($position, $salary);
+ $employee->set_prof_info($salary, $position);
  $_SESSION['employees']->pop();
  $_SESSION['employees']->add_employee($_SESSION['employee']);
 
