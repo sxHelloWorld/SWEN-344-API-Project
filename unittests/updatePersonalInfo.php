@@ -1,8 +1,9 @@
+<?php 
 /*
 Form for updating personal information and instructions on unit tests
 */
 
-<?php include("class_lib.php"); ?>
+include("class_lib.php"); ?>
 
 <?php session_start(); ?>
 
@@ -26,7 +27,15 @@ $_SESSION['employee'] = $employee;
  <body>
      
      <h1>Unit Test Case #2</h1>
+     /*
+     Instruction for test case
+     */
      <p>Submit the form with the following values ("John" for first name and "Doe" for last name) to verify that the update process for personal information was successful.</p>
+     
+     
+     /*
+     Form to update personal information
+     */
      <form action="testcase2.php" method='post'>
          <div class="container">
  
