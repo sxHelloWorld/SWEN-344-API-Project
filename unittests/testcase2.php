@@ -10,6 +10,10 @@
 echo "<h1>Results of Unit Test #2</h1>";
 
 $employee = $_SESSION['employee'];
+
+/*
+Stores original first and last names for comparison
+*/
 $origFirstName = $employee->get_fname();
 $origLastName = $employee->get_lname();
 
@@ -19,6 +23,9 @@ $_SESSION['employees']->pop();
 $employees->add_employee($employee);
 $_SESSION['employees'] = $employees;
 
+/*
+Unit tests as to whether name has been updated to "John Doe"
+*/
 echo (strcmp($firstName, "John") == 0) ? "PASS - fname changed from " . $origFirstName . " to John " : "FAIL - fname did not change to John";
 echo "</p>";
 

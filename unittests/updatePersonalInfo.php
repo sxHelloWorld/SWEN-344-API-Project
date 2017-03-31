@@ -1,3 +1,7 @@
+/*
+Form for updating personal information and instructions on unit tests
+*/
+
 <?php include("class_lib.php"); ?>
 
 <?php session_start(); ?>
