@@ -4,8 +4,6 @@
 
 <?php 
 $employees = $_SESSION['employees'];
-$employees->echo_results();
-
 
 echo "<h1>Unit Test Case #4</h1><p>Click on the delete button to verify that a single user has been deleted</p>";
 

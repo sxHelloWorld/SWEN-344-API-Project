@@ -4,10 +4,8 @@
 
 <?php 
 $employees = $_SESSION['employees'];
-$employees->echo_results();
 $employee = $employees->pop();
 $employees->add_employee($employee);
-$employee->echo_results();
 $salary = $employee->get_salary();
 $position = $employee->get_position();
 $_SESSION['employee'] = $employee;
