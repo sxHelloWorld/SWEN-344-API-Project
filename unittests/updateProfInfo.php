@@ -21,7 +21,7 @@ $_SESSION['employee'] = $employee;
  </head>
  <body>
      <h1>Unit Test Case #3</h1>
-     <p>Submit the form with the following values ("2" for position and "30000" for salary) to verify that the update process for professional information was successful.</p>
+     <p>Submit the form with the following values ("0" for position and "30000" for salary) to verify that the update process for professional information was successful.</p>
      <form action="testcase3.php" method='post'>
          <div class="container">
  
