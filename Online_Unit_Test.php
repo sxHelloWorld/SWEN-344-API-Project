@@ -1,5 +1,7 @@
 <?php
 
+use PHPUNIT\Framework\TestCase;
+
 // POST method 
 function getData($team, $function, $data)
 {
@@ -17,7 +19,7 @@ function getData($team, $function, $data)
 	return $result;
 }
 
-class assertAPI extends PHPUnit_Framework_TestCase
+class assertAPI extends TestCase
 {
 	public function setUp() {}
 	public function tearDown() {}
@@ -172,6 +174,4 @@ class assertAPI extends PHPUnit_Framework_TestCase
 
 }
 
-
-// {"ID":1,"USERNAME":"Student1","PASSWORD":"$2y$10$OPdL0s8h6N61JJHQIpmhGOmy9yuzi38azcjcF\/pojNsnBFn0tDcKm","FIRSTNAME":"John","LASTNAME":"Doe","EMAIL":"JDoe@email.com","ROLE":"Student"}
 ?>
