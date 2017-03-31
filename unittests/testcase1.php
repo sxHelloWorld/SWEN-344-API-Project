@@ -8,7 +8,7 @@
 
 $employees = new employee_collection();
 
-$an_employee = new employee("moo", "lol", "baa", "sa", "3000", "2");
+$an_employee = new employee("moo2", "lol", "baa", "sa", "3000", "2");
 $employees->add_employee($an_employee);
 
  $username = $_POST["user"];
