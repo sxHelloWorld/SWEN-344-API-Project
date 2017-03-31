@@ -4,12 +4,19 @@
 
 <?php
 
+/*
+Processes input
+*/
  $position = $_POST["position"];
  $salary = $_POST["salary"];
 
  $employee = $_SESSION['employee'];
 
 echo "<h1>Results of Unit Test #3</h1>";
+
+/*
+Unit tests as to whether position is set to 0 and salary to 30000
+*/
 
 echo (strcmp($position, "0") == 0) ? "PASS - position changed from " . $employee->get_position() . "to 0" : "FAIL - position did not change to 0";
 echo "</p>";

@@ -5,8 +5,15 @@
 <?php 
 $employees = $_SESSION['employees'];
 
+/*
+Instruction for unit test
+*/
 echo "<h1>Unit Test Case #4</h1><p>Click on the delete button to verify that a single user has been deleted</p>";
 
+
+/*
+Table to terminate Employees
+*/
 echo "<table border='1' cellpadding='10'>";
 
 echo "<tr> <th>Username</th> <th>First Name</th> <th>Last Name</th> <th>Position</th> <th>Salary</th> <th>Action</th></tr>";
