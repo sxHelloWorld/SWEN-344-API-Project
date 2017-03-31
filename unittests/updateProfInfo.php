@@ -1,3 +1,18 @@
+<?php include("class_lib.php"); ?>
+
+<?php session_start(); ?>
+
+<?php 
+$employees = $_SESSION['employees'];
+$employees->echo_results();
+$employee = $employees->pop();
+$employees->add_employee($employee);
+$employee->echo_results();
+$salary = $employee->get_salary();
+$position = $employee->get_position();
+$_SESSION['employee'] = $employee;
+?>
+
 <!DOCTYPE html>
  <html>
  <head>
@@ -8,15 +23,15 @@
  </head>
  <body>
      <h1>Unit Test Case #3</h1>
-     <p>Submit the form with the following values to verify that the update process for professional information was successful.</p>
+     <p>Submit the form with the following values ("2" for position and "30000" for salary) to verify that the update process for professional information was successful.</p>
      <form action="testcase3.php" method='post'>
          <div class="container">
  
              <label><b>Position</b></label>
-             <input type="number" name="position" value="2" min="0" max="3" required>
+             <input type="number" name="position" value=<?=$position?> min="0" max="3" required>
  
              <label><b>Salary</b></label>
-             <input type="number" name="salary" value="30000" min="0" max="500000" required>
+             <input type="number" name="salary" value=<?=$salary?> min="0" max="500000" required>
  
              <button type="submit">Submit</button>
          </div>

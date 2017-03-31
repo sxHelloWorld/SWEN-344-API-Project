@@ -1,6 +1,17 @@
+<?php include("class_lib.php"); ?>
+
+<?php session_start(); ?>
+
 <?php
 
+  $username = $_GET['username'];
+  $employees = $_SESSION['employees'];
+  $employees->remove_employee($username);
+
+ $employee = $_SESSION['employee'];
+
 echo "<h1>Results of Unit Test #4</h1>";
+
 
 if (isset($_GET['username'])) {
 
