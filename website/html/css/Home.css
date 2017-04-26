@@ -12,15 +12,11 @@
     text-align: center;
 }
 #buttons ul {
+	vertical-align: middle;
 	display: inline-block;
     margin: 0;
     padding: 0;
     /* For IE, the outcast */
     zoom:1;
     *display: inline;
-}
-#buttons li {
-    float: left;
-    padding: 2px 5px;
-    border: 1px solid black;
 }
