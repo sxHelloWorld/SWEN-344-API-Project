@@ -30,14 +30,14 @@
     </div>
 </nav>  
 
-<div id="buttonLinks" class="container">
+<div id="buttonLink" class="container">
     <ul id="buttons">
         <a href="employeeInfo.php">
             <button class="btn-info">View Profile info</button>
         </a>
         <a href="employeeInfo.php">
             <button class="btn-info">View Employees</button>
-        </a><
+        </a>
     </ul>
 </div>
     
