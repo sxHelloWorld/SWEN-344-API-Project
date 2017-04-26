@@ -2,11 +2,10 @@
 	border: double;
 	background-color: #C0C0C0;
     position: absolute;
-    width: 200px;
+    max-width: 225px;
     max-height: 25%;
-    height: 25%;
-    top: 15%;
-    left: 25%;
+    top: 50%;
+    left: 50%;
 }
 #buttons {
 	padding: 5px;
