@@ -1,8 +1,12 @@
 #buttonLinks {
+	background-color: #C0C0C0;
     position: absolute;
     height: 200px;
    	width: 400px;
     margin: -100px 0 0 -200px;
     top: 50%;
     left: 50%;
+}
+#view-info {
+	padding: 1px;
 }

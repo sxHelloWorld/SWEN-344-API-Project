@@ -21,7 +21,7 @@
 
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li><a>Dashboard</a></li>
+            <li><a href="employeeHome.php">Dashboard</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a>Logout</a></li>
@@ -30,8 +30,12 @@
     </div>
 </nav>  
 
-<div id="buttonLinks">
-    <a href="employeeInfo.php" id="view-info" class="btn-info">View Profile info</a>
+<div id="buttonLinks" class="">
+    <ul>
+        <a href="employeeInfo.php">
+            <button class="btn-info">View Profile info</button>
+        </a>
+    </ul>
 </div>
     
 <footer>
