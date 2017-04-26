@@ -30,6 +30,12 @@
     </div>
 </nav>  
 
+<div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-secondary">Left</button>
+  <button type="button" class="btn btn-secondary">Middle</button>
+  <button type="button" class="btn btn-secondary">Right</button>
+</div>
+
 <div class="btn-group btn-group-lg" role="group" aria-label="Buttons">
     <a href="employeeInfo.php">
         <button type="button" class="btn btn-info">View Profile info</button>
