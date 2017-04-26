@@ -2,6 +2,8 @@
 	border: double;
 	background-color: #C0C0C0;
     position: absolute;
+    width: 400px;
+    max-height: 25%
 }
 #buttons {
 
