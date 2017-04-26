@@ -31,9 +31,8 @@
 </nav>  
 
 <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-  <a href="#"><button type="button" class="btn btn-secondary">Left</button></a>
-  <button type="button" class="btn btn-secondary">Middle</button>
-  <button type="button" class="btn btn-secondary">Right</button>
+  <a href="employeeInfo.php"><button type="button" class="btn btn-secondary">View Profile Info</button></a>
+  <a href="viewEmployees.php"><button type="button" class="btn btn-secondary">View Employees</button></a>
 </div>
 
 <div class="btn-group btn-group-lg" role="group" aria-label="Buttons">
