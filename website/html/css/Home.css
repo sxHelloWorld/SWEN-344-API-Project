@@ -9,7 +9,7 @@
     left: 50%;
 }
 #buttons {
-	margin-left: 5%; 
+	margin-left: justify; 
     margin-top: 25%;
     padding: 1px;
 }
