@@ -30,12 +30,12 @@
     </div>
 </nav>  
 
-<div id="buttonLink" class="btn-group btn-group-lg" role="group">
+<div class="btn-group btn-group-lg" role="group" aria-label="Buttons">
     <a href="employeeInfo.php">
-        <button class="btn btn-info">View Profile info</button>
+        <button type="button" class="btn btn-info">View Profile info</button>
     </a>
     <a href="viewEmployees.php">
-        <button class="btn btn-info">View Employees</button>
+        <button type="button" class="btn btn-info">View Employees</button>
     </a>
 </div>
     
