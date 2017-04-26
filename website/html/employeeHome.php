@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/employeeHome.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
@@ -21,7 +22,6 @@
     <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
             <li><a>Dashboard</a></li>
-            <li><a href="employeeInfo.php">View Profile info</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a>Logout</a></li>
