@@ -30,7 +30,7 @@
     </div>
 </nav>  
 
-<div id="buttonLink" class="container">
+<div id="buttonLinks">
     <ul id="buttons">
         <a href="employeeInfo.php">
             <button class="btn-info">View Profile info</button>
