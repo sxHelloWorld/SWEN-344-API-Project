@@ -30,18 +30,10 @@
     </div>
 </nav>  
 
-<div id="buttonLinks">
-    <ul id="buttons">
-        <a href="employeeInfo.php">
-            <button class="btn btn-info">View My Profile info</button>
-        </a>
-        <a href="viewEmployees.php">
-            <button class="btn btn-info">View Employees</button>
-        </a>
-        <a href="regesterUser.php">
-            <button class="btn btn-primary">Register A User</button>
-        </a>
-    </ul>
+<div id="buttonLinks" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+  <a href="employeeInfo.php"><button type="button" class="btn btn-info">View Profile Info</button></a>
+  <a href="viewEmployees.php"><button type="button" class="btn btn-info">View Employees</button></a>
+  <a href="registerUser.php"><button type="button" class="btn btn-info">Register A User</button></a>
 </div>
     
 <footer>
