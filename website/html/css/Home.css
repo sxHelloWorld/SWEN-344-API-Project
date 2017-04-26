@@ -9,7 +9,6 @@
     left: 50%;
 }
 #buttons {
-    position: justify;
-    top: 40%;
-    left: 25%;
+    width: 70%;
+    margin: auto;
 }
