@@ -30,15 +30,13 @@
     </div>
 </nav>  
 
-<div id="buttonLinks">
-    <ul id="buttons">
-        <a href="employeeInfo.php">
-            <button class="btn btn-info">View Profile info</button>
-        </a>
-        <a href="viewEmployees.php">
-            <button class="btn btn-info">View Employees</button>
-        </a>
-    </ul>
+<div id="buttonLink" class="btn-group btn-group-lg" role="group">
+    <a href="employeeInfo.php">
+        <button class="btn btn-info">View Profile info</button>
+    </a>
+    <a href="viewEmployees.php">
+        <button class="btn btn-info">View Employees</button>
+    </a>
 </div>
     
 <footer>
