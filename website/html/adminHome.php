@@ -33,10 +33,13 @@
 <div id="buttonLinks">
     <ul id="buttons">
         <a href="employeeInfo.php">
-            <button class="btn btn-info">View Profile info</button>
+            <button class="btn btn-info">View My Profile info</button>
         </a>
         <a href="viewEmployees.php">
             <button class="btn btn-info">View Employees</button>
+        </a>
+        <a href="regesterUser.php">
+            <button class="btn btn-primary">Register A User</button>
         </a>
     </ul>
 </div>

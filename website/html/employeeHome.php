@@ -33,7 +33,7 @@
 <div id="buttonLinks" class="container">
     <ul id="buttons">
         <a href="employeeInfo.php">
-            <button class="btn-info">View Profile info</button>
+            <button class="btn btn-info">View Profile info</button>
         </a>
     </ul>
 </div>
