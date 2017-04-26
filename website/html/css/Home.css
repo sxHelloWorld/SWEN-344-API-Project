@@ -9,12 +9,8 @@
     left: 50%;
 }
 #buttons {
-    text-align: center;
-    display: inline-block;
+	height: 50%;
+    width: 70%;
     margin: auto;
-    padding: 0;
-    /* For IE, the outcast */
-    zoom:1;
-    *display: inline;
+    padding: 1px;
 }
-
