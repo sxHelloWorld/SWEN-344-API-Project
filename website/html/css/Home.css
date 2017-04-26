@@ -9,6 +9,8 @@
     left: 50%;
 }
 #buttons {
-    width: 70%;
+	height: 50%;
+    width: 50%;
     margin: auto;
+    padding: 1px;
 }
