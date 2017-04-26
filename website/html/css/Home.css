@@ -2,9 +2,9 @@
 	border: double;
 	background-color: #C0C0C0;
     position: absolute;
-    width: 400px;
+    width: 250px;
     max-height: 25%
 }
 #buttons {
-
+	padding: 5px;
 }
