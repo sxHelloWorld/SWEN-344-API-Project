@@ -31,7 +31,7 @@
 </nav>  
 
 <div id="buttonLinks">
-    <button href="employeeInfo.php" id="view-info" class="btn-info">View Profile info</button>
+    <a href="employeeInfo.php" id="view-info" class="btn-info">View Profile info</a>
 </div>
     
 <footer>
