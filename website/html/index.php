@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,9 +22,8 @@
                 <ul class="nav navbar-nav">
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
-                    <li><a href="index.php">Dashboard</a></li>
+                    <li><a href="viewProfile.php">View Profile</a></li>
                     <li><a href="#">View Employees</a></li>
-                    <li><a href="#">blah blah</a></li>
                     <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -38,17 +38,28 @@
         </nav>  
 
         <div id="main">
-            <!--
-            This is an example how auth should be used
-            There is two div with php if-statement will show up depending on the auth
-            -->
             <div id="container-fluid">
                 <?php if($AUTH > 0) { ?>
                 <!-- User is logged in -->
-                <p>User logged.</p>
+                <a href="viewProfile.php" role="button" class="btn btn-default btn-lg">View Profile</a>
                 <?php } else { ?>
                 <!-- User is not logged in -->
-                <p>User not logged.</p>
+                <div id="row">
+                    <h3>Login</h3>
+                    <form method="POST" action="login.php">
+                        <div class="form-group">
+                            <label for="user">Username</label>
+                            <input type="text" name="user" id="user" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input type="password" name="password" id="pass" class="form-control" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Login</button>
+                        </div>
+                    </form>
+                </div>
                 <?php } ?>
             </div>
         </div>
