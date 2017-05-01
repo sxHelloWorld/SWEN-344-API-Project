@@ -139,3 +139,12 @@ body {
     right: 0;
     bottom: 0;
 }
+
+#buttonLinks {
+    position: absolute;
+    top: 50%;
+    left: 35%;
+}
+#buttons {
+    padding: 25px;
+}
