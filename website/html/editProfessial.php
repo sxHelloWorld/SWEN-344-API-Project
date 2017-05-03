@@ -21,8 +21,9 @@
                 <ul class="nav navbar-nav">
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
-                    <li><a href="viewProfile.php">View Profile</a></li>
+                    <li><a href="index.php">Dashboard</a></li>
                     <li><a href="#">View Employees</a></li>
+                    <li><a href="#">blah blah</a></li>
                     <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -37,12 +38,14 @@
         </nav>  
 
         <div id="main">
+            <!--
+            This is an example how auth should be used
+            There is two div with php if-statement will show up depending on the auth
+            -->
             <div id="container-fluid">
-                <?php if($AUTH > 0) { ?>
-                <!-- User is logged in -->
-                <a href="editPersonal.php" role="button" class="btn btn-default btn-lg">Edit Profile</a>
+                <?php if($AUTH > 1) { ?>
+                
                 <?php } else { ?>
-                <!-- User is not logged in -->
                 <!-- non-user is not supposed to be here. -->
                 <?php header("Location: index.php"); die(); ?>
                 <?php } ?>
