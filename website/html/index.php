@@ -39,10 +39,22 @@
 
         <div id="main">
             <div id="container-fluid">
-                <?php if($AUTH > 0) { ?>
-                <!-- User is logged in -->
-                <a href="viewProfile.php" role="button" class="btn btn-default btn-lg">View Profile</a>
-                <?php } else { ?>
+                <?php if($AUTH > 3) { ?>
+        <div id="buttonLinks" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+          <a href="employeeInfo.php"><button type="button" class="btn btn-info">View Profile Info</button></a>
+          <a href="viewEmployees.php"><button type="button" class="btn btn-info">View Employees</button></a>
+          <a href="registerUser.php"><button type="button" class="btn btn-primary">Register A User</button></a>
+        </div>
+    <?php } elseif($AUTH > 2) { ?>
+        <div id="buttonLinks" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+          <a href="employeeInfo.php"><button type="button" class="btn btn-info">View Profile Info</button></a>
+          <a href="viewEmployees.php"><button type="button" class="btn btn-info">View Employees</button></a>
+        </div>
+    <?php } elseif($AUTH > 2) { ?>
+        <div id="buttonLinks" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+          <a href="employeeInfo.php"><button type="button" class="btn btn-info">View Profile Info</button></a>
+        </div>
+    <?php } elseif ($AUTH == 0) { ?>
                 <!-- User is not logged in -->
                 <div id="row">
                     <h3>Login</h3>
