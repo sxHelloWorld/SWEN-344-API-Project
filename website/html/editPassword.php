@@ -1,7 +1,5 @@
 <?php 
     session_start();
-    $_SESSION["username"] = $_POST["username"];
-    $_SESSION["password"] = $_POST["password"];
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +12,8 @@
         <link rel="stylesheet" href="css/styles.css">
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <?php include 'php/request.php'; ?>
+        <?php include "php/auth.php"; ?>
+        <?php include "php/request.php"; ?>
     </head>
     <body style="padding-top:60px;">
 
