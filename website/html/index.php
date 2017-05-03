@@ -50,11 +50,11 @@
                       <a href="employeeInfo.php"><button type="button" class="btn btn-info">View Profile Info</button></a>
                       <a href="viewEmployees.php"><button type="button" class="btn btn-info">View Employees</button></a>
                     </div>
-                <?php } elseif($AUTH = 1) { ?>
+                <?php } elseif($AUTH = ) { ?>
                     <div id="buttonLinks" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
                       <a href="employeeInfo.php"><button type="button" class="btn btn-info">View Profile Info</button></a>
                     </div>
-                <?php } ?>
+                <?php } else { ?>
                 <div id="row">
                     <h3>Login</h3>
                     <form method="POST" action="login.php">
