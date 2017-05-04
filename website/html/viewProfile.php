@@ -41,6 +41,7 @@
                 <?php if($AUTH > 0) { ?>
                 <!-- User is logged in -->
                 <a href="editPersonal.php" role="button" class="btn btn-default btn-lg">Edit Profile</a>
+                <a href="editPassword.php" role="button" class="btn btn-default btn-lg">Edit Password</a>
                 <?php } else { ?>
                 <!-- User is not logged in -->
                 <!-- non-user is not supposed to be here. -->
