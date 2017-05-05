@@ -21,7 +21,7 @@ if($AUTH < 3) {
 	die();
 } else {
 	$arrayData = array("username"=> $_SESSION["username"], "password" => $_SESSION["password"], "fname" => $_SESSION["fname"], "lname"=> $_SESSION["lname"], "email"=> $_SESSION["email"], "role"=> $_SESSION["role"], "managerID"=> $_SESSION["managerID"], "title"=> $_SESSION["title"], "address"=> $_SESSION["address"], "salary"=> $_SESSION["salary"], "phone"=> $_SESSION["phone"]);
-	$data = getData("human_resources", "createProf", $arrayData);
+	$data = request("human_resources", "createProf", $arrayData);
 
 	header("Location: index.php");
 	die();
