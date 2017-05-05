@@ -82,7 +82,7 @@ class assertAPI extends TestCase
         $resultID = json_decode($dataID);
         $id = $resultID->{"ID"};
         
-        $arrayData = array("id" => 5);
+        $arrayData = array("id" => $id);
 		$data = getData("human_resources", "getProfInfo", $arrayData);
         $result = json_decode($data);
 		$this->assertTrue($result->{"ADDRESS"} === "127.0.0.1");

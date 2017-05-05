@@ -2,16 +2,17 @@
 
 include 'request.php';
 
+if($AUTH < 3) {
+    header("Location: index.php");
+    die();
+}
+
 $includeUser = "";
 if(!isset($_GET["user"])) {
     $editUser = $user;
 } else {
     $editUser = $_GET["user"];
     $includeUser = "?user=" . $editUser;
-    if($editUser != $user && $AUTH <= 1) {
-        header("location: index.php");
-        die();
-    }
 }
 
 $array = array('username' => $editUser);
@@ -34,11 +35,7 @@ if($data2 == 'false') {
 
 $profInfo = json_decode($data2, true);
 
-$fName = $personInfo['FIRSTNAME'];
-$lName = $personInfo['LASTNAME'];
-$address = $profInfo['ADDRESS'];
-$email = $personInfo['EMAIL'];
-$phone = $profInfo['PHONE'];
-
+$salary = $profInfo['SALARY'];
+$position = $profInfo['TITLE'];
 
 ?>

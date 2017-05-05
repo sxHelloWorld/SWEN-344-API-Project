@@ -1,16 +1,31 @@
 <?php
 
 include 'auth.php';
+include 'request.php';
 
-if($AUTH == 0) {
-    header("Location: index.php");
+if($AUTH < 1) {
+    header("Location: ../index.php");
     die();
 }
 
-include 'request.php';
+if(isset($_GET['user'])) {
+    $editUser = $_GET['user'];
+} else {
+    $editUser = $user;
+}
+
+if($editUser != $user && $AUTH <= 1) {
+    header("Location: ../index.php");
+    die();
+}
+
+$addString = "";
+if($editUser != $user) {
+    $addString = "&user=" . $editUser;
+}
 
 if(!(isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['address']) && isset($_POST['email']) && isset($_POST['phone']))) {
-    header("Location: editPersonal.php?msg=0");
+    header("Location: ../editPersonal.php?msg=0" . $addString);
     die();
 }
 
@@ -20,14 +35,14 @@ $address = $_POST['address'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
 
-$array = array("username" => $user, "fname" => $fName, "lname" => $lName, "email" => $email, "address" => $address, "phone" => $phone);
+$array = array("username" => $editUser, "fname" => $fName, "lname" => $lName, "email" => $email, "address" => $address, "phone" => $phone);
 $data = request("human_resources", "updatePerson", $array);
 
 if($data == 'false') {
-    header("Location: ../editPersonal.php?msg=0");
+    header("Location: ../editPersonal.php?msg=0" . $addString);
     die();
 } else {
-    header("Location: ../editPersonal.php?msg=1");
+    header("Location: ../editPersonal.php?msg=1" . $addString);
     die();
 }
 

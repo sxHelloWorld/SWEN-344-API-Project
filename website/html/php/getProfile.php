@@ -3,15 +3,12 @@
 include 'request.php';
 
 $includeUser = "";
+
 if(!isset($_GET["user"])) {
     $editUser = $user;
 } else {
     $editUser = $_GET["user"];
     $includeUser = "?user=" . $editUser;
-    if($editUser != $user && $AUTH <= 1) {
-        header("location: index.php");
-        die();
-    }
 }
 
 $array = array('username' => $editUser);
@@ -39,6 +36,8 @@ $lName = $personInfo['LASTNAME'];
 $address = $profInfo['ADDRESS'];
 $email = $personInfo['EMAIL'];
 $phone = $profInfo['PHONE'];
+$position = $profInfo['TITLE'];
+$salary = $profInfo['SALARY'];
 
 
 ?>

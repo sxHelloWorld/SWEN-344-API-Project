@@ -50,10 +50,10 @@
                     <?php } ?>
                 <?php } ?>
                 <?php include 'php/getPersonal.php'; ?>
-                <form method="POST" action="php/postPersonal.php">
+                <form method="POST" action="php/postPersonal.php?user=<?php echo $editUser; ?>">
                     <div class="form-group">
                         <label for="user">Username</label>
-                        <input type="text" id="user" class="form-control" value="<?php echo $user; ?>" readonly>
+                        <input type="text" id="user" class="form-control" value="<?php echo $editUser; ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="fName">First Name</label>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-default">Change</button>
-                        <a href="viewProfile.php" role="button" class="btn btn-danger">Cancel</a>
+                        <a href="viewProfile.php<?= $includeUser ?>" role="button" class="btn btn-danger">Cancel</a>
                     </div>
                 </form>
                 <?php } else { ?>

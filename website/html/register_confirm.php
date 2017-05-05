@@ -13,26 +13,18 @@ $_SESSION["address"] = $_POST["address"];
 $_SESSION["salary"] = $_POST["salary"];
 $_SESSION["phone"] = $_POST["phone"];
 
-function getData($team, $function, $data)
-{
-	$url = "http://vm344f.se.rit.edu/API/API.php";
-	$url .= "?team=$team&function=$function";
-	$options = array(
-		'http' => array(
-			'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-			'method' => 'POST',
-			'content' => http_build_query($data)
-		)
-	);
-	$content = stream_context_create($options);
-	$result = file_get_contents($url, false, $content);
-	return $result;
+include 'php/request.php';
+include 'php/auth.php';
+
+if($AUTH < 3) {
+	header("Location: index.php");
+	die();
+} else {
+	$arrayData = array("username"=> $_SESSION["username"], "password" => $_SESSION["password"], "fname" => $_SESSION["fname"], "lname"=> $_SESSION["lname"], "email"=> $_SESSION["email"], "role"=> $_SESSION["role"], "managerID"=> $_SESSION["managerID"], "title"=> $_SESSION["title"], "address"=> $_SESSION["address"], "salary"=> $_SESSION["salary"], "phone"=> $_SESSION["phone"]);
+	$data = getData("human_resources", "createProf", $arrayData);
+
+	header("Location: index.php");
+	die();
 }
 
-        $arrayData = array("username"=> $_SESSION["username"], "password" => $_SESSION["password"], "fname" => $_SESSION["fname"], "lname"=> $_SESSION["lname"], "email"=> $_SESSION["email"], "role"=> $_SESSION["role"], "managerID"=> $_SESSION["managerID"], "title"=> $_SESSION["title"], "address"=> $_SESSION["address"], "salary"=> $_SESSION["salary"], "phone"=> $_SESSION["phone"]);
-        $data = getData("human_resources", "createProf", $arrayData);
-        
-        header("Location: index.php");
-        die();
-    
 ?>

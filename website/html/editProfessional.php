@@ -30,7 +30,7 @@
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
                     <li><a href='logout.php'>Logout</a></li>
-                    <li class="navbar-brand"><p class="wrapTxt"><?php echo $user; ?><span class="mask"></span></p></li>
+                    <li class="navbar-brand"><p class="wrapTxt"><?= $user ?><span class="mask"></span></p></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -43,8 +43,37 @@
             There is two div with php if-statement will show up depending on the auth
             -->
             <div id="container-fluid">
-                <?php if($AUTH > 1) { ?>
-                
+                <?php if($AUTH > 2) { ?>
+                <?php if(isset($_GET["msg"])) { ?>
+                    <?php if($_GET["msg"] == 0) { ?>
+                        <h3>Error! Something went wrong.</h3>
+                    <?php } elseif($_GET["msg"] == 1) { ?>
+                        <h3>Changed!</h3>
+                    <?php } ?>
+                <?php } ?>
+                <?php include 'php/getProf.php'; ?>
+                <form method="POST" action="php/postProf.php?user=<?= $editUser ?>">
+                    <div class="form-group">
+                        <label for="user">Username</label>
+                        <input type="text" id="user" class="form-control" value="<?= $editUser ?>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary">Salary</label>
+                        <input type="text" name="salary" id="fName" class="form-control" placeholder="Salary" value="<?= $salary ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Position</label>
+                        <select name="position" id="position" required>
+                            <option value="Admin" <?php if($position == "Admin") { echo "selected"; } ?>>Admin</option>
+                            <option value="Manager" <?php if($position == "Manager") { echo "selected"; } ?>>Manager</option>
+                            <option value="Employee" <?php if($position == "Employee") { echo "selected"; } ?>>Employee</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Change</button>
+                        <a href="viewProfile.php<?= $includeUser ?>" role="button" class="btn btn-danger">Cancel</a>
+                    </div>
+                </form>
                 <?php } else { ?>
                 <!-- non-user is not supposed to be here. -->
                 <?php header("Location: index.php"); die(); ?>

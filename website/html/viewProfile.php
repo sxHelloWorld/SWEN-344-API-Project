@@ -9,6 +9,12 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <?php include "php/auth.php"; ?>
+        <style>
+        .viewProfile p {
+            border-style: solid;
+            text-align: center;
+        }
+        </style>
     </head>
     <body style="padding-top:60px;">
         <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
@@ -29,7 +35,7 @@
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
                     <li><a href='logout.php'>Logout</a></li>
-                    <li class="navbar-brand"><p class="wrapTxt"><?php echo $user; ?><span class="mask"></span></p></li>
+                    <li class="navbar-brand"><p class="wrapTxt"><?= $user ?><span class="mask"></span></p></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -40,8 +46,35 @@
             <div id="container-fluid">
                 <?php if($AUTH > 0) { ?>
                 <!-- User is logged in -->
-                <a href="editPersonal.php" role="button" class="btn btn-default btn-lg">Edit Profile</a>
-                <a href="editPassword.php" role="button" class="btn btn-default btn-lg">Edit Password</a>
+                <?php include 'php/getProfile.php'; ?>
+                <div class="col-md-12">
+                <h2>User: <?= $editUser ?></h2>
+                </div>
+                <div class="col-md-4">
+                <div class="viewProfile">
+                <h2>First name: </h2><p><?= $fName ?></p><br>
+                <h2>Last name: </h2><p><?= $lName ?></p><br>
+                <h2>Address: </h2><p><?= $address ?></p><br>
+                <h2>Email: </h2><p><?= $email ?></p><br>
+                <h2>Phone Number: </h2><p><?= $phone ?></p><br>
+                </div>
+                <a href="editPersonal.php<?= $includeUser ?>" role="button" class="btn btn-default btn-lg">Edit Profile</a>
+                </div>
+                <div class="col-md-4">
+                <div class="viewProfile">
+                <h2>Salary: </h2><p><?= $salary ?></p><br>
+                <h2>Position: </h2><p><?= $position ?></p><br>
+                </div>
+                <a href="editProfessional.php<?= $includeUser ?>" role="button" class="btn btn-default btn-lg">Edit Professional</a>
+                </div>
+                <div class="col-md-4">
+                <br>
+                <a href="editPassword.php<?= $includeUser ?>" role="button" class="btn btn-default btn-lg">Edit Password</a>
+                <br><br><br><br>
+                <?php if($AUTH == 3) { ?>
+                <a href="terminate.php<?= $includeUser ?>" role="button" class="btn btn-danger btn-lg">Terminate</a>
+                <?php } ?>
+                </div>
                 <?php } else { ?>
                 <!-- User is not logged in -->
                 <!-- non-user is not supposed to be here. -->
