@@ -8,16 +8,16 @@ if($AUTH < 3) {
     die();
 }
 
+$addString = "";
 if(isset($_GET['user'])) {
     $editUser = $_GET['user'];
+    if($editUser != $user) {
+        $addString = "&user=" . $editUser;
+    }
 } else {
     $editUser = $user;
 }
 
-$addString = "";
-if($editUser != $user) {
-    $addString = "&user=" . $editUser;
-}
 
 if(!(isset($_POST['salary']) && isset($_POST['position']))) {
     header("Location: ../editProfessional.php?msg=0" . $addString);

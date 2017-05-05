@@ -8,8 +8,12 @@ if($AUTH < 1) {
     die();
 }
 
+$addString = "";
 if(isset($_GET['user'])) {
     $editUser = $_GET['user'];
+    if($editUser != $user) {
+        $addString = "&user=" . $editUser;
+    }
 } else {
     $editUser = $user;
 }
@@ -17,11 +21,6 @@ if(isset($_GET['user'])) {
 if($editUser != $user && $AUTH <= 1) {
     header("Location: ../index.php");
     die();
-}
-
-$addString = "";
-if($editUser != $user) {
-    $addString = "&user=" . $editUser;
 }
 
 if(!(isset($_POST['fName']) && isset($_POST['lName']) && isset($_POST['address']) && isset($_POST['email']) && isset($_POST['phone']))) {

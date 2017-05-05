@@ -32,7 +32,7 @@
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
                     <li><a href='logout.php'>Logout</a></li>
-                    <li class="navbar-brand"><p class="wrapTxt"><?php echo $user; ?><span class="mask"></span></p></li>
+                    <li class="navbar-brand"><p class="wrapTxt"><?= $user ?><span class="mask"></span></p></li>
                     <?php } ?>
                 </ul>
             </div>
@@ -50,30 +50,30 @@
                     <?php } ?>
                 <?php } ?>
                 <?php include 'php/getPersonal.php'; ?>
-                <form method="POST" action="php/postPersonal.php?user=<?php echo $editUser; ?>">
+                <form method="POST" action="php/postPersonal.php?user=<?= $editUser ?>">
                     <div class="form-group">
                         <label for="user">Username</label>
-                        <input type="text" id="user" class="form-control" value="<?php echo $editUser; ?>" readonly>
+                        <input type="text" id="user" class="form-control" value="<?= $editUser ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label for="fName">First Name</label>
-                        <input type="text" name="fName" id="fName" class="form-control" placeholder="First Name" value="<?php echo $fName; ?>" required>
+                        <input type="text" name="fName" id="fName" class="form-control" placeholder="First Name" value="<?= $fName ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="lName">Last Name</label>
-                        <input type="text" name="lName" id="lName" class="form-control" placeholder="Last Name" value="<?php echo $lName; ?>" required>
+                        <input type="text" name="lName" id="lName" class="form-control" placeholder="Last Name" value="<?= $lName ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<?php echo $address; ?>" required>
+                        <input type="text" name="address" id="address" class="form-control" placeholder="Address" value="<?= $address ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<?php echo $email; ?>" required>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="<?= $email ?>" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" value="<?php echo $phone; ?>" required>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" value="<?= $phone ?>" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-default">Change</button>
