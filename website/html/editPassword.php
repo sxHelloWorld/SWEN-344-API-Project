@@ -54,7 +54,7 @@
                         <?php } ?> 
                     <?php } ?> 
                       
-                        <form method="POST" action="php/postPassword.php">
+                        <form method="POST" action="php/postPassword.php?user=<?= $editUser ?>">
                             <div class="form-group">
                                 <label for="newPass">Enter New Password:</label>
                                 <input id="newPass" name="newPass" class="form-control" type="password">
