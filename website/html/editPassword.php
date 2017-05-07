@@ -1,6 +1,3 @@
-<?php 
-    session_start();
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,10 +10,8 @@
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <?php include "php/auth.php"; ?>
-        <?php include "php/request.php"; ?>
     </head>
     <body style="padding-top:60px;">
-
         <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
             <div class="container-fluid">
             <div class="navbar-header">
@@ -47,29 +42,20 @@
 
         <div id="main">
             <div id="container-fluid">
-                <!-- User is logged in -->
-                <?php if($AUTH > 0) { 
-                    if (isset($_POST["password"])) {
-                        if (!empty($_POST["newPass"]) && $_POST["newPass"] == $_POST["confirmNewPass"]) {
-                            $data = array("username" => $_SESSION["username"], "password" => $_POST["newPass"]);
-                            $result = request("human_resources, updatePassword", $data);
-
-                            if ($result == true) {
-                                echo "<h3>Your password has been changed.</h3>";
-                            }
-
-                            else {
-                                echo "<h3>Error updating password.</h3>";
-                            }
-                        }
-
-                        else {
-                            echo "<h3>Please reenter new password. Ensure that new passwords match.</h3>";       
-                        }
-                    }
-                ?>
-                    <div id="passDiv">
-                        <form action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
+                <?php if($AUTH > 0) { ?>
+                <?php if(isset($_GET["msg"])) { ?>
+                    <?php if($_GET["msg"] == 0) { ?>
+                        <h3>Error! Something went wrong.</h3>
+                    <?php } elseif($_GET["msg"] == 1) { ?>
+                        <h3>Please fill in all fields.</h3>
+                    <?php } elseif($_GET["msg"] == 2) { ?>
+                        <h3>Make sure both password fields match first.</h3>
+                        <?php } else { ?>
+                        <h3>Changed!</h3>
+                        <?php } ?> 
+                    <?php } ?> 
+                      
+                        <form method="POST" action="php/postPassword.php">
                             <div class="form-group">
                                 <label for="newPass">Enter New Password:</label>
                                 <input id="newPass" name="newPass" class="form-control" type="password">
@@ -80,20 +66,19 @@
                                 <input id="confirmNewPass" name="confirmNewPass" class="form-control" type="password">
                             </div>
                             <div class="form-group">
-                                <button name= "password" class="btn btn-default" type="submit">Submit</button>
+                                <button name="password" class="btn btn-default" type="submit">Submit</button>
                             </div>
                         </form>
-                    </div>
                 
                 <?php } else { ?>
-                <!-- User is not logged in -->
-                <p>User not logged.</p>
+                <!-- non-user is not supposed to be here. -->
+                <?php header("Location: index.php"); die(); ?>
                 <?php } ?>
             </div>
         </div>
         
     <footer>
-        <p>HumanResources 2017</p>
+        <p>Human Resources 2017</p>
     </footer>
     </body>
 </html>
