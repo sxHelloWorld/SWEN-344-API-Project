@@ -1,7 +1,5 @@
 <?php
 
-include 'request.php';
-
 $includeUser = "";
 if(!isset($_GET["user"])) {
     $editUser = $user;
