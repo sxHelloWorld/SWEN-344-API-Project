@@ -13,10 +13,10 @@ echo $result;
 
 $url = "http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=147776&t.k=gbqkpYRad1y&action=salaries&q=software+engineer&userip=" . $_SERVER['REMOTE_ADDR'] . "&useragent=Mozilla/%24.0";
 
-$context = stream_context_create($options);
-$results = file_get_contents($url, false, null);
+//$context = stream_context_create($options);
+//$results = file_get_contents($url, false, null);
 echo "<br>";
-echo $results;
+//echo $results;
 
 //find code to convert $results XML string to actual XML object, then can do search there
 //do all printing here, combine the code from 2 pages
