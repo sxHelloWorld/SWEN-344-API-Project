@@ -1,12 +1,5 @@
 <?php
-include 'glassdoorAPI.php';
 
-$data = $result;
-
-if($data == 'false') {
-    header("Location: index.php");
-    die();
-}
 if ($_POST('Position')) {
 	$role = $_POST['Position'];
 	if ($role = "HR") {
