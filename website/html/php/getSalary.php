@@ -1,6 +1,6 @@
 <?php
 
-if ($_POST('Position')) {
+if ($_POST['Position']) {
 	$role = $_POST['Position'];
 	if ($role = "HR") {
 		$sal = "55,000";
@@ -16,7 +16,7 @@ if ($_POST('Position')) {
 }
 
 
-$postion = $role;
+$position = $role;
 $salary = $sal;
 
 ?>
