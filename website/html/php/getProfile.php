@@ -39,5 +39,5 @@ $phone = $profInfo['PHONE'];
 $position = $profInfo['TITLE'];
 $salary = $profInfo['SALARY'];
 
-$data = request("human_resources", "createProf", $arrayData);
+
 ?>
