@@ -65,11 +65,15 @@
                 <h2>Salary: </h2><p><?= $salary ?></p><br>
                 <h2>Position: </h2><p><?= $position ?></p><br>
                 </div>
+                <?php if(!($editUser != $user && $AUTH < 2)) { ?>
                 <a href="editProfessional.php<?= $includeUser ?>" role="button" class="btn btn-default btn-lg">Edit Professional</a>
+                <?php } ?>
                 </div>
                 <div class="col-md-4">
                 <br>
+                <?php if(!($editUser != $user && $AUTH < 2)) { ?>
                 <a href="editPassword.php<?= $includeUser ?>" role="button" class="btn btn-default btn-lg">Edit Password</a>
+                <?php } ?>
                 <br><br><br><br>
                 <?php if($AUTH == 3) { ?>
                 <a href="terminate.php<?= $includeUser ?>" role="button" class="btn btn-danger btn-lg">Terminate</a>
