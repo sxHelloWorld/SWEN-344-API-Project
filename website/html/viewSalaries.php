@@ -76,6 +76,7 @@ $salary = $sal;
         <div id="main">
             <div id="container-fluid">
                 <?php if($AUTH > 0) { ?>
+<<<<<<< HEAD
                     <?php if($AUTH > 0) { ?>
                         <!-- User is logged in -->
                         
@@ -116,6 +117,39 @@ $salary = $sal;
                         <!-- non-user is not supposed to be here. -->
                         <?php header("Location: index.php"); die(); ?>
                     <?php } ?>
+=======
+                    <!-- User is logged in -->
+                    <?php include 'php/getSalary.php'; ?>
+                    <div class="col-md-12">
+                        <h2>View Position Salaries</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary">Position</button>
+                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <select class="dropdown-menu" id="Position">
+                                <option class="dropdown-item" value="HR">Human Resources</option>
+                                <option class="dropdown-item" value="Specialist">Specialist</option>
+                                <option class="dropdown-item" value="Intern">Intern</option>
+                                <option class="dropdown-item" value="Manager">Manager</option>
+                                <option class="dropdown-item" value="CEO">CEO</option>
+                            </select>
+                            <button action="php/getSalary.php">Get Salary</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="viewSalary">
+                            <h2>Position: </h2><p><?= $position ?></p><br>
+                            <h2>Salary: </h2><p><?= $salary ?></p><br>
+                        </div>
+                    </div>
+                <?php } else { ?>
+                    <!-- User is not logged in -->
+                    <!-- non-user is not supposed to be here. -->
+                    <?php header("Location: index.php"); die(); ?>
+>>>>>>> 11cb06b6992501ced9528166a8251ff8e0d6594b
                 <?php } ?>
             </div>
         </div>
