@@ -52,11 +52,14 @@
                                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <div class="dropdown-menu" id="Position">
-                                    <a class="dropdown-item" action="php/getSalary.php" value="">Action</a>
-                                    <a class="dropdown-item" action="php/getSalary.php" value="">Another action</a>
-                                </div>
-                                <button action></button>
+                                <select class="dropdown-menu" id="Position">
+                                    <option class="dropdown-item" value="HR">Human Resources</option>
+                                    <option class="dropdown-item" value="Specialist">Specialist</option>
+                                    <option class="dropdown-item" value="Intern">Intern</option>
+                                    <option class="dropdown-item" value="Manager">Manager</option>
+                                    <option class="dropdown-item" value="CEO">CEO</option>
+                                </select>
+                                <button action="php/getSalary.php">Get Salary</button>
                             </div>
                         </div>
                         <div class="col-md-4">
