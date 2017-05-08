@@ -40,9 +40,36 @@
         <div id="main">
             <div id="container-fluid">
                 <?php if($AUTH > 0) { ?>
-                    <div id="getSalaries" class="" role="group" aria-label="Basic example">
-                      
-                    </div>
+                    <?php if($AUTH > 0) { ?>
+                        <!-- User is logged in -->
+                        <?php include 'php/getSalary.php'; ?>
+                        <div class="col-md-12">
+                            <h2>View Position Salaries</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary">Position</button>
+                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu" id="Position">
+                                    <a class="dropdown-item" action="php/getSalary.php" value="">Action</a>
+                                    <a class="dropdown-item" action="php/getSalary.php" value="">Another action</a>
+                                </div>
+                                <button action></button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="viewSalary">
+                                <h2>Position: </h2><p><?= $position ?></p><br>
+                                <h2>Salary: </h2><p><?= $salary ?></p><br>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <!-- User is not logged in -->
+                        <!-- non-user is not supposed to be here. -->
+                        <?php header("Location: index.php"); die(); ?>
+                    <?php } ?>
                 <?php } ?>
             </div>
         </div>
