@@ -9,7 +9,7 @@ $options = array(
 );
 $context = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
-echo $result;
+//echo $result;
 
 $url = "http://api.glassdoor.com/api/api.htm?v=1&format=json&t.p=147776&t.k=gbqkpYRad1y&action=salaries&q=software+engineer&userip=" . $_SERVER['REMOTE_ADDR'] . "&useragent=Mozilla/%24.0";
 

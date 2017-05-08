@@ -1,3 +1,39 @@
+<?php
+
+if ($_POST['Position']) {
+
+    include 'php/glassdoorAPI.php';
+
+    $data = $result;
+
+    $a_json = json_decode($data, true);
+
+    if($data == 'false') {
+        header("Location: index.php");
+        die();
+    }
+    
+	$role = $_POST['Position'];
+	if ($role === "HR") {
+        $sal = $a_json["response"]["employers"][0]["id"];
+	} else if ($role === "Specialist") {
+		$sal = $a_json["response"]["employers"][1]["id"];
+	} else if ($role === "Intern") {
+		$sal = $a_json["response"]["employers"][2]["id"];
+	} else if ($role === "Manager") {
+		$sal = $a_json["response"]["employers"][3]["id"];
+	} else if ($role === "CEO") {
+		$sal = $a_json["response"]["employers"][4]["id"];
+	}
+$position = $role;
+$salary = $sal;
+}
+
+
+
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,32 +78,39 @@
                 <?php if($AUTH > 0) { ?>
                     <?php if($AUTH > 0) { ?>
                         <!-- User is logged in -->
-                        <?php include 'php/getSalary.php'; ?>
+                        
                         <div class="col-md-12">
                             <h2>View Position Salaries</h2>
                         </div>
+                <form action="#" method="post" >
                         <div class="col-md-4">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-secondary">Position</button>
                                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <select class="dropdown-menu" id="Position">
+                                
+                                <select class="dropdown-menu" name="Position">
                                     <option class="dropdown-item" value="HR">Human Resources</option>
                                     <option class="dropdown-item" value="Specialist">Specialist</option>
                                     <option class="dropdown-item" value="Intern">Intern</option>
                                     <option class="dropdown-item" value="Manager">Manager</option>
                                     <option class="dropdown-item" value="CEO">CEO</option>
-                                </select>
-                                <button action="php/getSalary.php">Get Salary</button>
+                                </select> 
                             </div>
+                                 
+                                    
                         </div>
+                    <input type="submit" name="Submit">
+                    </form>
+                        <?php if($_POST['Position']) { ?> 
                         <div class="col-md-4">
                             <div class="viewSalary">
                                 <h2>Position: </h2><p><?= $position ?></p><br>
                                 <h2>Salary: </h2><p><?= $salary ?></p><br>
                             </div>
                         </div>
+                        <?php } ?>
                     <?php } else { ?>
                         <!-- User is not logged in -->
                         <!-- non-user is not supposed to be here. -->
