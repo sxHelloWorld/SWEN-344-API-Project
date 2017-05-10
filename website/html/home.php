@@ -31,7 +31,7 @@
     </div>
     </div>
 </nav>  
-
+<?php header("Location: index.php"); die(); ?>
 <div class="container-fluid">
     <?php if($AUTH > 3) { ?>
         <div id="buttonLinks" class="btn-group btn-group-lg" role="group" aria-label="Basic example">

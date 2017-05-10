@@ -22,10 +22,10 @@
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
                     <li><a href="viewProfile.php">View Profile</a></li>
-                    <?php } ?>
                     <!-- User is manager or admin -->
                     <?php if($AUTH > 1) { ?>
-                    <li><a href="#">View Employees</a></li>
+                    <li><a href="viewEmployees.php">View Employees</a></li>
+                    <?php } ?>
                     <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

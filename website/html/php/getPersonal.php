@@ -1,5 +1,7 @@
 <?php
 
+// Load personal data for editing personal page
+
 include 'request.php';
 
 $includeUser = "";

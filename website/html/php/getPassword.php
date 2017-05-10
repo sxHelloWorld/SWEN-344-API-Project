@@ -1,5 +1,7 @@
 <?php
 
+// Load data for password page
+
 $includeUser = "";
 if(!isset($_GET["user"])) {
     $editUser = $user;

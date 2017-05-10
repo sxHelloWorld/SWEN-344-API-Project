@@ -34,9 +34,11 @@
                 <ul class="nav navbar-nav">
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
-                    <li><a href="index.php">Dashboard</a></li>
-                    <li><a href="#">View Employees</a></li>
-                    <li><a href="#">blah blah</a></li>
+                    <li><a href="viewProfile.php">View Profile</a></li>
+                    <!-- User is manager or admin -->
+                    <?php if($AUTH > 1) { ?>
+                    <li><a href="viewEmployees.php">View Employees</a></li>
+                    <?php } ?>
                     <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

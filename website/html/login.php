@@ -53,7 +53,7 @@ switch($userRole) {
     default:
         // By default, the user doesn't exist in our database and prevent login occurs
         deleteCookie("AUTH");
-        deleteCookie("USER", $user);
+        deleteCookie("USER");
         break;
 }
 

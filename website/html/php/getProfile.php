@@ -1,5 +1,7 @@
 <?php
 
+// Load all data for profile viewing
+
 include 'request.php';
 
 $includeUser = "";

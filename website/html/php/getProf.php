@@ -1,5 +1,7 @@
 <?php
 
+// Load professional data for editing professional page
+
 include 'request.php';
 
 if($AUTH < 3) {

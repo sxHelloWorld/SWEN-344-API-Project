@@ -59,7 +59,10 @@ $salary = $sal;
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
                     <li><a href="viewProfile.php">View Profile</a></li>
-                    <li><a href="#">View Employees</a></li>
+                    <!-- User is manager or admin -->
+                    <?php if($AUTH > 1) { ?>
+                    <li><a href="viewEmployees.php">View Employees</a></li>
+                    <?php } ?>
                     <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -79,9 +82,9 @@ $salary = $sal;
                 <!-- User is logged in -->
                 
                 <div class="col-md-12">
-                    <h2>View Position Salaries</h2>
+                    <h2>View Salary</h2>
                 </div>
-            <form action="#" method="post" >
+            <form action="viewSalaries.php" method="post" >
                 <div class="col-md-4">
                     <div class="btn-group">
                         <p>Position:</p>

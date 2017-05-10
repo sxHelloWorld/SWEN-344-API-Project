@@ -1,5 +1,7 @@
 <?php
 
+// Get employees data and insert into table (HTML format)
+
 include 'request.php';
 
 if($AUTH < 2) {
@@ -18,7 +20,11 @@ if($data == 'false') {
     $jsonData = json_decode($data, true);
     foreach($jsonData as $key => $value) {
         $userID = $value['USER_ID'];
-        $newJson = $jsonDatabase[$userID-1];
+        for($i = 0; $i < count($jsonDatabase); $i++) {
+            if($jsonDatabase[$i]['ID'] == $userID) {
+                $newJson = $jsonDatabase[$i];
+            }
+        }
         $username = $newJson['USERNAME'];
         $fName = $newJson['FIRSTNAME'];
         $lName = $newJson['LASTNAME'];

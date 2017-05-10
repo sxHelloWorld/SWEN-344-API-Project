@@ -28,7 +28,10 @@
                     <?php if($AUTH > 0) { ?>
                     <!-- User is logged in -->
                     <li><a href="viewProfile.php">View Profile</a></li>
-                    <li><a href="#">View Employees</a></li>
+                    <!-- User is manager or admin -->
+                    <?php if($AUTH > 1) { ?>
+                    <li><a href="viewEmployees.php">View Employees</a></li>
+                    <?php } ?>
                     <?php } ?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -65,7 +68,7 @@
                 <h2>Salary: </h2><p><?= $salary ?></p><br>
                 <h2>Position: </h2><p><?= $position ?></p><br>
                 </div>
-                <?php if(!($editUser != $user && $AUTH < 2)) { ?>
+                <?php if(!($editUser != $user && $AUTH < 2) && $AUTH > 1) { ?>
                 <a href="editProfessional.php<?= $includeUser ?>" role="button" class="btn btn-default btn-lg">Edit Professional</a>
                 <?php } ?>
                 </div>
