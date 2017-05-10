@@ -68,6 +68,11 @@
                             <button type="submit" class="btn btn-default">Login</button>
                         </div>
                     </form>
+                    <p>For testing purpose:<br>
+                    Use this information to login as admin<br>
+                    user: Student1<br>
+                    password: password<br>
+                    </p>
                 </div>
                 <?php } ?>
             </div>
