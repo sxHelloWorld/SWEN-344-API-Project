@@ -45,9 +45,9 @@
                 <?php if($AUTH > 0) { ?>
                 <div id="buttonLinks" class="btn-group btn-group-lg" role="group" aria-label="Basic example">
                     <a href="viewProfile.php"><button type="button" class="btn btn-info">View Profile Info</button></a>
+                    <a href="viewSalaries.php"><button type="button" class="btn btn-info">View Salary</button></a>
                     <?php if($AUTH > 1) { ?>
                     <a href="viewEmployees.php"><button type="button" class="btn btn-info">View Employees</button></a>
-                    <a href="viewSalaries.php"><button type="button" class="btn btn-info">View Salary</button></a>
                     <?php } if($AUTH > 2) { ?>
                     <a href="register.php"><button type="button" class="btn btn-primary">Register A User</button></a>
                     <?php } ?>

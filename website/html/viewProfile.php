@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-md-4">
                 <br>
-                <?php if(!($editUser != $user && $AUTH < 2)) { ?>
+                <?php if(!($editUser != $user && $AUTH < 3)) { ?>
                 <a href="editPassword.php<?= $includeUser ?>" role="button" class="btn btn-default btn-lg">Edit Password</a>
                 <?php } ?>
                 <br><br><br><br>
